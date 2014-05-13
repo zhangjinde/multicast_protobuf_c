@@ -29,7 +29,6 @@
 size_t nethub_generate_ping(nethub_obj *nh,void **obuffer) {
 	
 	MulticastMsg m = MULTICAST_MSG__INIT;
-	//temp message
 	uint64_t message[256];
 	bzero(message,256);
 	sprintf((char*)message,"%s|PING",nh->localipv4);
@@ -37,6 +36,8 @@ size_t nethub_generate_ping(nethub_obj *nh,void **obuffer) {
 	m.n_c = strlen((char*)message) -1;
 	m.c = malloc(sizeof(uint64_t) * m.n_c);
 	memcpy(m.c,message,m.n_c);
+	
+	//##Pack our protobuf data structure here
 	int len = multicast_msg__get_packed_size(&m);
 	*obuffer = malloc(len);
 	multicast_msg__pack(&m,*obuffer);
@@ -77,6 +78,7 @@ void *nethub_loop(void *args) {
 int nethub_listener_cb(uint8_t *msg, size_t len, jnx_socket *s) {
 	
 	MulticastMsg *m;
+	//## Unpack our data structure here
 	m = multicast_msg__unpack(NULL,len,msg);
 	if(m == NULL) {
 		printf("Something went wrong...\n");
