@@ -10,5 +10,5 @@ Note that the protobuf structure does not vary in formation from C++ but the fun
 Deps
 ====
 
-jnxlibc https://github.com/AlexsJones/jnxlibc
-protobuf-c https://github.com/protobuf-c/protobuf-c
+-jnxlibc https://github.com/AlexsJones/jnxlibc
+-protobuf-c https://github.com/protobuf-c/protobuf-c
