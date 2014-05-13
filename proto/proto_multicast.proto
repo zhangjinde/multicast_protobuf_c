@@ -1,0 +1,4 @@
+message MulticastMsg
+{
+	repeated uint64 c =1;
+}
