@@ -34,7 +34,7 @@ size_t nethub_generate_ping(nethub_obj *nh,void **obuffer) {
 	bzero(message,256);
 	sprintf((char*)message,"%s|PING",nh->localipv4);
 	printf("message: %s\n",message);
-	m.n_c = strlen((char*)message) -1;
+	m.n_c = strlen((char*)message);
 	m.c = malloc(sizeof(uint64_t) * m.n_c);
 	memcpy(m.c,message,m.n_c);
 	int len = multicast_msg__get_packed_size(&m);
